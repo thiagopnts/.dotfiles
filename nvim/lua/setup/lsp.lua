@@ -83,6 +83,7 @@ local lang_servers = {
   pyright = {},
   bashls = {},
   solargraph = {},
+  clangd = {},
   sumneko_lua = require("lua-dev").setup({
     lspconfig = {
       on_attach = function(client, bufnr)
