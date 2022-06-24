@@ -86,7 +86,7 @@ local lang_servers = {
   clangd = {},
   sumneko_lua = require("lua-dev").setup({
     lspconfig = {
-      on_attach = function(client, bufnr)
+      on_attach = function(client, _)
         client.resolved_capabilities.document_formatting = false
         client.resolved_capabilities.document_range_formatting = false
       end,
