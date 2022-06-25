@@ -9,7 +9,7 @@ for DIR in $(echo */); do
 	echo "  moving ${DIR} to ${LINK_TO}"
 	if [[ -d ${LINK_TO} ]]; then
 		echo "  ${LINK_TO} already exists, making a backup"
-		mv ${LINK_TO} $(realpath ${MOVE_TO})_bkp
+		mv ${LINK_TO} $(realpath ${LINK_TO})_bkp
 	fi
 	echo "ln -s $(realpath ${DIR}) ${LINK_TO}"
 	sleep 1
