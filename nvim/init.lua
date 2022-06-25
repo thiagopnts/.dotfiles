@@ -293,16 +293,8 @@ require("packer").startup(function(use)
         },
       })
 
-      -- Insert mid section. You can make any number of sections in neovim :)
-      -- for lualine it's any number greater then 2
-      ins_left({
-        function()
-          return "%="
-        end,
-      })
-
-      ins_left({
-        -- Lsp server name .
+      ins_right({
+        -- LSP name.
         function()
           local msg = "No Active LSP"
           local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
