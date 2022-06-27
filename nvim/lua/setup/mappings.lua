@@ -98,8 +98,6 @@ vim.api.nvim_set_keymap("n", "<Leader>b", ":Telescope buffers<cr>", { noremap = 
 vim.api.nvim_set_keymap("n", "<Leader>ag", ":Telescope live_grep<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-]>", ":lua vim.lsp.buf.definition()<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>e", ":lua vim.diagnostic.open_float()<cr>", { noremap = true, silent = true })
--- git fugitive mappings
-vim.api.nvim_set_keymap("n", "<Leader>gs", ":Gstatus<cr>", { noremap = true, silent = true })
 -- git merge accept right
 vim.api.nvim_set_keymap("n", "<Leader>j", ":diffget //3", { noremap = true, silent = true })
 -- git merge accept left
@@ -107,3 +105,10 @@ vim.api.nvim_set_keymap("n", "<Leader>f", ":diffget //2", { noremap = true, sile
 
 vim.api.nvim_set_keymap("n", "K", ":Lspsaga hover_doc", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>uw", ":Lspsaga lsp_finder<CR>", { noremap = true, silent = true })
+--require('gitsigns')[op]({ vim.fn.line("."), vim.fn.line("v") })
+vim.api.nvim_set_keymap(
+  "n",
+  "<Leader>gs",
+  ":lua require('gitsigns')['stage_hunk']({ vim.fn.line('.'), vim.fn.line('v') })<CR>",
+  { noremap = true, silent = true }
+)
