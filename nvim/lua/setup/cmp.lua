@@ -1,30 +1,57 @@
-local lspkind = require("lspkind")
 local luasnip = require("luasnip")
 require("luasnip.loaders.from_vscode").lazy_load()
 local cmp = require("cmp")
 
+local codicons = {
+  Text = "",
+  Method = "",
+  Function = "",
+  Constructor = "",
+  Field = "",
+  Variable = "",
+  Class = "",
+  Interface = "",
+  Module = "",
+  Property = "",
+  Unit = "",
+  Value = "",
+  Enum = "",
+  Keyword = "",
+  Snippet = "",
+  Color = "",
+  File = "",
+  Reference = "",
+  Folder = "",
+  EnumMember = "",
+  Constant = "",
+  Struct = "",
+  Event = "",
+  Operator = "",
+  TypeParameter = "",
+}
+
 local kinds = {
-  Text = "",
+  Text = "",
   Method = "",
-  Function = "",
-  Constructor = "ﰕ",
+  Function = "",
+  Constructor = "",
   Field = "ﰠ",
-  Variable = "",
+  Variable = "",
   Class = "ﴯ",
   Interface = "",
-  Module = "",
-  Property = "",
+  Module = "",
+  Property = "ﰠ",
   Unit = "塞",
   Value = "",
-  Enum = "",
-  Keyword = "廓",
-  Snippet = "",
+  Enum = "",
+  Keyword = "",
+  Snippet = "",
   Color = "",
   File = "",
-  Reference = "",
-  Folder = "",
+  Reference = "",
+  Folder = "",
   EnumMember = "",
-  Constant = "",
+  Constant = "",
   Struct = "פּ",
   Event = "",
   Operator = "",
@@ -40,7 +67,6 @@ cmp.setup({
       luasnip.lsp_expand(args.body)
     end,
   },
-
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(_, vim_item)
@@ -50,26 +76,6 @@ cmp.setup({
       return vim_item
     end,
   },
-
-  -- formatting = {
-  --   fields = { "kind", "abbr", "menu" },
-  --   before = function(_, vim_item)
-  --     vim_item.menu = vim_item.kind
-  --     return vim_item
-  --   end,
-  --   format = lspkind.cmp_format({
-  --     --      menu = {
-  --     --        buffer = "[buf]",
-  --     --        nvim_lsp = "[LSP]",
-  --     --        nvim_lua = "[api]",
-  --     --        luasnip = "[snip]",
-  --     --        copilot = "[🤖]",
-  --     --      },
-  --     --      with_text = true,
-  --     mode = "symbol",
-  --     maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-  --   }),
-  -- },
   window = {
     completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),

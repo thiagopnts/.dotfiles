@@ -82,6 +82,7 @@ local lang_servers = {
   terraformls = {},
   pyright = {},
   bashls = {},
+  rust_analyzer = {},
   solargraph = {},
   clangd = {},
   sumneko_lua = require("lua-dev").setup({

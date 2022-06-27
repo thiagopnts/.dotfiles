@@ -20,7 +20,7 @@ require("packer").startup(function(use)
   -- TODO: learn more about
   use("nvim-treesitter/nvim-treesitter-textobjects")
   use("jose-elias-alvarez/null-ls.nvim")
-  use("onsails/lspkind.nvim")
+  use("glepnir/lspsaga.nvim")
   use("axelf4/vim-strip-trailing-whitespace") -- remove trailing whitespace
   use("kyazdani42/nvim-web-devicons") -- for file icons
   use("tpope/vim-fugitive")
@@ -181,6 +181,7 @@ require("packer").startup(function(use)
 
       local config = {
         options = {
+          disabled_filetypes = { "packer", "NvimTree" },
           -- Disable sections and component separators
           component_separators = "",
           section_separators = "",
@@ -221,7 +222,7 @@ require("packer").startup(function(use)
         function()
           return "▊"
         end,
-        color = { fg = colors.blue }, -- Sets highlighting of component
+        color = { fg = colorscheme.sumiInk2 }, -- Sets highlighting of component
         padding = { left = 0, right = 1 }, -- We don't need space before this
       })
 
@@ -254,14 +255,9 @@ require("packer").startup(function(use)
             ["!"] = colors.red,
             t = colors.red,
           }
-          return { fg = mode_color[vim.fn.mode()] }
+          return { fg = mode_color[vim.fn.mode()], bg = colorscheme.sumiInk1 }
         end,
         padding = { right = 1 },
-      })
-
-      ins_left({
-        "filesize",
-        cond = conditions.buffer_not_empty,
       })
 
       ins_left({
@@ -269,6 +265,20 @@ require("packer").startup(function(use)
         fmt = string.upper,
         icons_enabled = true, -- I think icons are cool but Eviline doesn't have them. sigh
         color = { fg = colors.green, gui = "bold" },
+      })
+      ins_left({
+        "diagnostics",
+        sources = { "nvim_diagnostic" },
+        symbols = { error = " ", warn = " ", info = " " },
+        diagnostics_color = {
+          color_error = { fg = colors.red, bg = colorscheme.sumiInk0 },
+          color_warn = { fg = colors.yellow, bg = colorscheme.sumiInk0 },
+          color_info = { fg = colors.cyan, bg = colorscheme.sumiInk0 },
+        },
+      })
+      ins_left({
+        "filesize",
+        cond = conditions.buffer_not_empty,
       })
 
       -- lets keep filename on the winbar for now
@@ -281,17 +291,6 @@ require("packer").startup(function(use)
       ins_left({ "location" })
 
       ins_left({ "progress", color = { fg = colors.fg, gui = "bold" } })
-
-      ins_left({
-        "diagnostics",
-        sources = { "nvim_diagnostic" },
-        symbols = { error = " ", warn = " ", info = " " },
-        diagnostics_color = {
-          color_error = { fg = colors.red },
-          color_warn = { fg = colors.yellow },
-          color_info = { fg = colors.cyan },
-        },
-      })
 
       ins_right({
         -- LSP name.
@@ -316,41 +315,40 @@ require("packer").startup(function(use)
 
       -- Add components to right sections
       ins_right({
-        "diff",
-        symbols = { added = " ", modified = "柳", removed = " " },
-        diff_color = {
-          added = { fg = colors.green },
-          modified = { fg = colors.orange },
-          removed = { fg = colors.red },
-        },
-        cond = conditions.hide_in_width,
-      })
-
-      ins_right({
         "o:encoding", -- option component same as &encoding in viml
         fmt = string.upper,
         cond = conditions.hide_in_width,
         color = { fg = colors.green, gui = "bold" },
+      })
+      ins_right({
+        "diff",
+        symbols = { added = " ", modified = "柳", removed = " " },
+        diff_color = {
+          added = { fg = colors.green, bg = colorscheme.sumiInk0 },
+          modified = { fg = colors.orange, bg = colorscheme.sumiInk0 },
+          removed = { fg = colors.red, bg = colorscheme.sumiInk0 },
+        },
+        cond = conditions.hide_in_width,
       })
 
       ins_right({
         "fileformat",
         fmt = string.upper,
         icons_enabled = true,
-        color = { fg = colors.green, gui = "bold" },
+        color = { fg = colors.green, bg = colorscheme.sumiInk0, gui = "bold" },
       })
 
       ins_right({
         "branch",
         icon = "",
-        color = { fg = colors.violet, gui = "bold" },
+        color = { fg = colors.violet, bg = colorscheme.sumiInk0, gui = "bold" },
       })
 
       ins_right({
         function()
           return "▊"
         end,
-        color = { fg = colors.blue },
+        color = { fg = colorscheme.sumiInk2 }, -- Sets highlighting of component
         padding = { left = 1 },
       })
 
@@ -393,13 +391,14 @@ require("setup/lsp")
 require("setup/telescope")
 --require("setup/toggleterm")
 
---local saga = require("lspsaga")
+local saga = require("lspsaga")
+saga.init_lsp_saga()
 --saga.init_lsp_saga({
---	error_sign = "●",
---	warn_sign = "●",
---	hint_sign = " ",
---	infor_sign = " ",
---	rename_prompt_prefix = "",
+-- error_sign = "●",
+-- warn_sign = "●",
+-- hint_sign = " ",
+-- infor_sign = " ",
+-- rename_prompt_prefix = "",
 --})
 
 require("nvim-treesitter.configs").setup({
@@ -443,5 +442,19 @@ vim.cmd([[
 ]])
 vim.cmd("filetype plugin indent on")
 vim.cmd("syntax enable")
+
+local kanagawa = require("kanagawa.colors")
+
+local colorscheme = kanagawa.setup()
+require("kanagawa").setup({
+  overrides = {
+    --    NvimTreeNormal = { bg = colorscheme.sumiInk2, fg = colorscheme.sumiInk2 },
+    NvimTreeVertsplit = { bg = colorscheme.sumiInk1, fg = colorscheme.sumiInk1 },
+    NvimTreeStatusLineNC = { bg = colorscheme.sumiInk1, fg = colorscheme.sumiInk1 },
+    NvimTreeStatusLine = { bg = colorscheme.sumiInk1, fg = colorscheme.sumiInk1 },
+    StatusLineNC = { bg = colorscheme.sumiInk2, fg = colorscheme.sumiInk2 },
+  },
+})
+
 vim.cmd([[colorscheme kanagawa]])
 vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]], false)
