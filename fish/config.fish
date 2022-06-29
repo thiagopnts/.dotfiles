@@ -7,6 +7,7 @@ set -U grcplugin_ls --color -l
 # set a custom config path just so we can have starship on its own dir in the dotfiles
 set -U STARSHIP_CONFIG ~/.config/starship/starship.toml
 
+fish_add_path $HOME/.cargo/bin
 fish_add_path /nix/var/nix/profiles/default/bin
 fish_add_path /opt/homebrew/bin
 fish_add_path $HOME/go/bin
@@ -59,3 +60,8 @@ set -g fish_pager_color_completion $foreground
 set -g fish_pager_color_description $comment
 
 starship init fish | source
+
+# pnpm
+set -gx PNPM_HOME "/Users/thiago.pontes/Library/pnpm"
+set -gx PATH "$PNPM_HOME" $PATH
+# pnpm end
