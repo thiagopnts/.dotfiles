@@ -20,6 +20,7 @@ starship init fish | source
 alias g="git"
 alias gst="git status"
 alias reload="source ~/.config/fish/config.fish"
+alias fish-config="nvim ~/.config/fish/config.fish"
 
 #!/usr/bin/fish
 
