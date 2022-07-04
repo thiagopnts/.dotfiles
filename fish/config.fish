@@ -62,6 +62,10 @@ set -g fish_pager_color_description $comment
 
 starship init fish | source
 
+replay source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc"
+replay source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
+
+
 # pnpm
 set -gx PNPM_HOME "/Users/thiago.pontes/Library/pnpm"
 set -gx PATH "$PNPM_HOME" $PATH
