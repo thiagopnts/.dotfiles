@@ -8,7 +8,10 @@ vim.api.nvim_set_keymap("n", "<Leader>c", [[<Cmd>:Telescope commands<CR>]], { no
 vim.api.nvim_set_keymap("n", "<Leader>so", [[<Cmd>:SymbolsOutline<CR>]], { noremap = true, silent = true })
 
 -- rename current symbol
-vim.api.nvim_set_keymap("n", "<Leader>rn", [[<Cmd>lua vim.lsp.buf.rename()<CR>]], { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<Leader>rn", [[<Cmd>lua vim.lsp.buf.rename()<CR>]], { noremap = true, silent = true })
+-- trying lsp saga rename because it has a nice float window + preview etc
+-- might be worth looking into hooking lsp.buf.rename into it instead?
+vim.api.nvim_set_keymap("n", "<Leader>rn", [[<Cmd>Lspsaga rename<CR>]], { noremap = true, silent = true })
 
 -- create new file
 vim.api.nvim_set_keymap("n", "<Leader>fn", [[<Cmd> DashboardNewFile<CR>]], { noremap = true, silent = true })

@@ -38,7 +38,7 @@ require("packer").startup(function(use)
   -- colorschemes
   use("rebelot/kanagawa.nvim")
   use("folke/tokyonight.nvim")
-  --  use({ "akinsho/toggleterm.nvim", tag = "v1.*" })
+  use({ "akinsho/toggleterm.nvim", tag = "v1.*" })
   use({ "nvim-telescope/telescope-fzy-native.nvim", run = "make" })
   use({ "xiyaowong/telescope-emoji.nvim", requires = "nvim-telescope/telescope.nvim" })
   --use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
@@ -47,6 +47,7 @@ require("packer").startup(function(use)
     requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
   })
   use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+  -- sticks current function/method/class/etc context to top line
   use("nvim-treesitter/nvim-treesitter-context")
   use({ "ray-x/guihua.lua", run = "cd lua/fzy && make" })
   use({
@@ -390,7 +391,7 @@ require("setup/mappings")
 require("setup/cmp")
 require("setup/lsp")
 require("setup/telescope")
---require("setup/toggleterm")
+require("setup/toggleterm")
 
 local saga = require("lspsaga")
 saga.init_lsp_saga()
@@ -427,6 +428,26 @@ require("nvim-treesitter.configs").setup({
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
+  },
+  -- nvim-treesitter-textobjects configs
+  textobjects = {
+    select = {
+      enable = true,
+
+      -- Automatically jump forward to textobj, similar to targets.vim
+      lookahead = true,
+
+      keymaps = {
+        ["uc"] = "@comment.outer",
+        -- You can use the capture groups defined in textobjects.scm
+        ["ai"] = "@conditional.outer",
+        ["ii"] = "@conditional.inner",
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+      },
+    },
   },
 })
 
