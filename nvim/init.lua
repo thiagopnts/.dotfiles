@@ -15,8 +15,6 @@ require("packer").startup(function(use)
   use("rafamadriz/friendly-snippets")
   use("folke/lua-dev.nvim")
   use("triglav/vim-visual-increment")
-  --  use("hrsh7th/cmp-copilot")
-  -- use("github/copilot.vim")
   -- TODO: learn more about
   use("nvim-treesitter/nvim-treesitter-textobjects")
   use("jose-elias-alvarez/null-ls.nvim")
@@ -399,14 +397,6 @@ require("setup/toggleterm")
 
 local saga = require("lspsaga")
 saga.init_lsp_saga()
---saga.init_lsp_saga({
--- error_sign = "●",
--- warn_sign = "●",
--- hint_sign = " ",
--- infor_sign = " ",
--- rename_prompt_prefix = "",
---})
-
 require("nvim-treesitter.configs").setup({
   -- A list of parser names, or "all"
   ensure_installed = { "c", "lua", "rust" },
