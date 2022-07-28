@@ -23,6 +23,10 @@ require("packer").startup(function(use)
   use("glepnir/lspsaga.nvim")
   use("axelf4/vim-strip-trailing-whitespace") -- remove trailing whitespace
   use("kyazdani42/nvim-web-devicons") -- for file icons
+  use({
+    "yamatsum/nvim-nonicons",
+    requires = { "kyazdani42/nvim-web-devicons" },
+  })
   use("tpope/vim-fugitive")
   use("christoomey/vim-tmux-navigator")
   use("cespare/vim-toml") -- toml syntax highlight
