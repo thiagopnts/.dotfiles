@@ -48,7 +48,7 @@ null_ls.setup({
     null_ls.builtins.formatting.prettier,
 
     null_ls.builtins.diagnostics.hadolint,
-    null_ls.builtins.diagnostics.eslint,
+    null_ls.builtins.diagnostics.semgrep,
     null_ls.builtins.diagnostics.checkmake,
     null_ls.builtins.diagnostics.fish,
 
@@ -113,6 +113,7 @@ lspconfig.tsserver.setup({
 require("rust-tools").setup({})
 require("go").setup({
   lsp_keymaps = false,
+  run_in_floaterm = true,
   lsp_cfg = {
     capabilities = lsp_defaults.capabilities,
     on_attach = function(client, bufnr)

@@ -40,7 +40,7 @@ require("packer").startup(function(use)
   -- colorschemes
   use("rebelot/kanagawa.nvim")
   use("folke/tokyonight.nvim")
-  use({ "akinsho/toggleterm.nvim", tag = "v1.*" })
+  use({ "akinsho/toggleterm.nvim" })
   use({ "nvim-telescope/telescope-fzy-native.nvim", run = "make" })
   use({ "xiyaowong/telescope-emoji.nvim", requires = "nvim-telescope/telescope.nvim" })
   --use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
