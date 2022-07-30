@@ -70,3 +70,6 @@ replay source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/c
 set -gx PNPM_HOME "/Users/thiago.pontes/Library/pnpm"
 set -gx PATH "$PNPM_HOME" $PATH
 # pnpm end
+
+replay export GPG_TTY=$(tty)
+gpgconf --launch gpg-agent
