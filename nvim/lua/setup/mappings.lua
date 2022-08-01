@@ -101,7 +101,12 @@ vim.api.nvim_set_keymap("n", "<Leader>ff", "<cmd>Telescope find_files<cr>", { no
 vim.api.nvim_set_keymap("n", "<Leader>b", ":Telescope buffers<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>ag", ":Telescope live_grep<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-]>", ":lua vim.lsp.buf.definition()<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>e", ":lua vim.diagnostic.open_float()<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap(
+  "n",
+  "<Leader>e",
+  ":lua vim.diagnostic.open_float({prefix = '', source = true})<cr>",
+  { noremap = true, silent = true }
+)
 -- git merge accept right
 vim.api.nvim_set_keymap("n", "<Leader>j", ":diffget //3", { noremap = true, silent = true })
 -- git merge accept left

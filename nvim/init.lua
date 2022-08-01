@@ -43,7 +43,6 @@ require("packer").startup(function(use)
   use("lukas-reineke/indent-blankline.nvim")
   -- colorschemes
   use("rebelot/kanagawa.nvim")
-  use("folke/tokyonight.nvim")
   use({ "akinsho/toggleterm.nvim" })
   use({ "nvim-telescope/telescope-fzy-native.nvim", run = "make" })
   use({ "xiyaowong/telescope-emoji.nvim", requires = "nvim-telescope/telescope.nvim" })
@@ -90,13 +89,6 @@ require("packer").startup(function(use)
     end,
   })
   use({
-    "esensar/nvim-dev-container",
-    requires = { { "nvim-treesitter/nvim-treesitter" } },
-    config = function()
-      require("devcontainer").setup({})
-    end,
-  })
-  use({
     "numToStr/Comment.nvim",
     config = function()
       require("Comment").setup({})
@@ -139,7 +131,7 @@ require("packer").startup(function(use)
     end,
   })
   use({
-    "hoob3rt/lualine.nvim",
+    "nvim-lualine/lualine.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
     config = function()
       -- lualine config based off eviline from @shadmansaleh
@@ -179,7 +171,7 @@ require("packer").startup(function(use)
 
       local config = {
         options = {
-          disabled_filetypes = { "packer", "NvimTree" },
+          disabled_filetypes = { "packer", "NvimTree", "TelescopePrompt" },
           -- Disable sections and component separators
           component_separators = "",
           section_separators = "",
@@ -260,9 +252,9 @@ require("packer").startup(function(use)
 
       ins_left({
         "filetype",
-        fmt = string.upper,
-        icons_enabled = true, -- I think icons are cool but Eviline doesn't have them. sigh
-        color = { fg = colors.green, gui = "bold" },
+        icon_only = true,
+        colored = true,
+        --        color = { fg = colors.green, gui = "bold" },
       })
       ins_left({
         "diagnostics",
@@ -307,7 +299,7 @@ require("packer").startup(function(use)
           end
           return msg
         end,
-        icon = " ",
+        icon = false,
         color = { fg = colors.white, gui = "bold" },
       })
 
@@ -389,8 +381,6 @@ require("setup/lsp")
 require("setup/telescope")
 require("setup/toggleterm")
 
-local saga = require("lspsaga")
-saga.init_lsp_saga()
 require("nvim-treesitter.configs").setup({
   -- A list of parser names, or "all"
   ensure_installed = { "c", "lua", "rust" },
@@ -468,3 +458,6 @@ require("kanagawa").setup({
 
 vim.cmd([[colorscheme kanagawa]])
 vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]], false)
+vim.diagnostic.config({
+  virtual_text = true,
+})
