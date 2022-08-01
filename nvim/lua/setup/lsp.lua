@@ -12,15 +12,18 @@ require("lsp_signature").setup({
   },
 })
 
-require("nvim-lsp-installer").setup({
-  automatic_installation = true,
+require("mason").setup({
   ui = {
     icons = {
-      server_installed = "✓",
-      server_pending = "➜",
-      server_uninstalled = "✗",
+      package_installed = "✓",
+      package_pending = "➜",
+      package_uninstalled = "✗",
     },
   },
+})
+
+require("mason-lspconfig").setup({
+  automatic_installation = true,
 })
 
 local lsp_defaults = {
@@ -74,6 +77,7 @@ null_ls.setup({
 local lspconfig = require("lspconfig")
 
 lspconfig.util.default_config = vim.tbl_deep_extend("force", lspconfig.util.default_config, lsp_defaults)
+    or lspconfig.util.default_config
 
 local lang_servers = {
   gopls = {},
@@ -111,13 +115,27 @@ lspconfig.tsserver.setup({
 })
 
 require("rust-tools").setup({})
-require("go").setup({
-  lsp_keymaps = false,
-  run_in_floaterm = true,
-  lsp_cfg = {
-    capabilities = lsp_defaults.capabilities,
-    on_attach = function(client, bufnr)
-      lsp_defaults.on_attach(client, bufnr)
-    end,
+-- require("go").setup({
+--   disable_defaults = true,
+--   lsp_keymaps = false,
+--   run_in_floaterm = true,
+--   lsp_diag_virtual_text = false,
+--   lsp_cfg = {
+--     capabilities = lsp_defaults.capabilities,
+--     on_attach = function(client, bufnr)
+--       lsp_defaults.on_attach(client, bufnr)
+--     end,
+--   },
+-- })
+
+local kind = require("lspsaga.lspkind")
+local inspect = require("lib.inspect")
+kind[12] = { "Function", " ", "#CBA6F7" }
+local saga = require("lspsaga")
+saga.init_lsp_saga({
+  diagnostic_header = { " ", " ", " ", "ﴞ " },
+  show_diagnostic_source = true,
+  symbol_in_winbar = {
+    in_custom = true,
   },
 })
