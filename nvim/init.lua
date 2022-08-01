@@ -10,7 +10,11 @@
 require("packer").startup(function(use)
   use("wbthomason/packer.nvim")
   -- client for language servers
-  use("neovim/nvim-lspconfig")
+  use({
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
+  })
   use("jose-elias-alvarez/nvim-lsp-ts-utils")
   use("rafamadriz/friendly-snippets")
   use("folke/lua-dev.nvim")
@@ -51,22 +55,12 @@ require("packer").startup(function(use)
   use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
   -- sticks current function/method/class/etc context to top line
   use("nvim-treesitter/nvim-treesitter-context")
-  use({ "ray-x/guihua.lua", run = "cd lua/fzy && make" })
-  use({
-    "ray-x/go.nvim",
-    {
-      requires = {
-        { "ray-x/guihua.lua" },
-      },
-    },
-  })
   use({
     "williamboman/nvim-lsp-installer",
     {
       requires = {
         { "neovim/nvim-lspconfig" },
         { "folke/lua-dev.nvim" },
-        { "ray-x/go.nvim" },
       },
     },
   })
