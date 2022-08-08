@@ -122,6 +122,6 @@ vim.api.nvim_set_keymap(
   { noremap = true, silent = true }
 )
 
-vim.api.nvim_set_keymap("n", "<Leader>cc", [[<Cmd>:cc<CR>]], { noremap = true, silent = true })
+--vim.api.nvim_set_keymap("n", "<Leader>cc", [[<Cmd>:cc<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>cn", [[<Cmd>:cn<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>cp", [[<Cmd>:cp<CR>]], { noremap = true, silent = true })

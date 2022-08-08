@@ -34,7 +34,7 @@ for opt, value in pairs({
   laststatus = 3,
   completeopt = { "menu", "menuone", "noselect" },
   list = true,
-  cmdheight = 0,
+  --  cmdheight = 0,
   -- winbar = "%f",
 }) do
   vim.opt[opt] = value
