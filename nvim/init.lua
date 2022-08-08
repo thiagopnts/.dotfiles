@@ -26,7 +26,7 @@ require("packer").startup(function(use)
   -- TODO: learn more about
   use("nvim-treesitter/nvim-treesitter-textobjects")
   use("jose-elias-alvarez/null-ls.nvim")
-  use("glepnir/lspsaga.nvim")
+  use({ "glepnir/lspsaga.nvim", branch = "main" })
   use("axelf4/vim-strip-trailing-whitespace") -- remove trailing whitespace
   use("kyazdani42/nvim-web-devicons") -- for file icons
   use({
