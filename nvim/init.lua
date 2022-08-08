@@ -15,6 +15,10 @@ require("packer").startup(function(use)
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
   })
+  use({
+    "ray-x/go.nvim",
+    "ray-x/guihua.lua",
+  })
   use("jose-elias-alvarez/nvim-lsp-ts-utils")
   use("rafamadriz/friendly-snippets")
   use("folke/lua-dev.nvim")

@@ -114,21 +114,20 @@ lspconfig.tsserver.setup({
 })
 
 require("rust-tools").setup({})
--- require("go").setup({
---   disable_defaults = true,
---   lsp_keymaps = false,
---   run_in_floaterm = true,
---   lsp_diag_virtual_text = false,
---   lsp_cfg = {
---     capabilities = lsp_defaults.capabilities,
---     on_attach = function(client, bufnr)
---       lsp_defaults.on_attach(client, bufnr)
---     end,
---   },
--- })
+require("go").setup({
+  disable_defaults = true,
+  lsp_keymaps = false,
+  run_in_floaterm = true,
+  lsp_diag_virtual_text = {},
+  lsp_cfg = {
+    capabilities = lsp_defaults.capabilities,
+    on_attach = function(client, bufnr)
+      lsp_defaults.on_attach(client, bufnr)
+    end,
+  },
+})
 
 local kind = require("lspsaga.lspkind")
-local inspect = require("lib.inspect")
 kind[12] = { "Function", " ", "#CBA6F7" }
 local saga = require("lspsaga")
 saga.init_lsp_saga({
