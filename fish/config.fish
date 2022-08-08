@@ -21,6 +21,7 @@ alias g="git"
 alias gst="git status"
 alias reload="source ~/.config/fish/config.fish"
 alias fish-config="nvim ~/.config/fish/config.fish"
+alias update-neovim="brew uninstall neovim && brew install --HEAD neovim"
 
 #!/usr/bin/fish
 
