@@ -50,7 +50,7 @@ require("packer").startup(function(use)
   use({ "akinsho/toggleterm.nvim" })
   use({ "nvim-telescope/telescope-fzy-native.nvim", run = "make" })
   use({ "xiyaowong/telescope-emoji.nvim", requires = "nvim-telescope/telescope.nvim" })
-  --use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
+  use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
   use({
     "nvim-telescope/telescope.nvim",
     requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
@@ -354,20 +354,13 @@ require("packer").startup(function(use)
     config = function()
       vim.g.nvim_tree_side = "left"
       vim.g.nvim_tree_width = 25
-      vim.g.nvim_tree_git_hl = 1
-      vim.g.nvim_tree_root_folder_modifier = ":t"
       vim.g.nvim_tree_allow_resize = 1
       require("nvim-tree").setup({
         open_on_setup = false,
-        auto_close = false,
         open_on_tab = false,
-        indent_markers = true,
-        disable_window_picker = true,
-        quit_on_open = true,
         update_focused_file = { enable = true },
         git = {
           enable = false,
-          auto_open = false,
         },
         filters = {
           dotfiles = true,

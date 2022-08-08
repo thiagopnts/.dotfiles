@@ -113,7 +113,11 @@ vim.api.nvim_set_keymap("n", "<Leader>j", ":diffget //3", { noremap = true, sile
 vim.api.nvim_set_keymap("n", "<Leader>f", ":diffget //2", { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap("n", "K", ":Lspsaga hover_doc", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap("n", "<Leader>gfs", ":GoFillStruct<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>uw", ":Lspsaga lsp_finder<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Leader>dvo", ":DiffviewOpen<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Leader>dvc", ":DiffviewClose<CR>", { noremap = true, silent = true })
 --require('gitsigns')[op]({ vim.fn.line("."), vim.fn.line("v") })
 vim.api.nvim_set_keymap(
   "n",
@@ -125,3 +129,8 @@ vim.api.nvim_set_keymap(
 --vim.api.nvim_set_keymap("n", "<Leader>cc", [[<Cmd>:cc<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>cn", [[<Cmd>:cn<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>cp", [[<Cmd>:cp<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap("i", "<C-s><C-w>", "<C-o>:normal vg_S)A<cr>", {
+  noremap = true,
+  silent = true,
+  desc = "wraps from current cursor position until the end of line with parenthesis in insert mode",
+})
