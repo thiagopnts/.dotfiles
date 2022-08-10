@@ -22,6 +22,7 @@ alias gst="git status"
 alias reload="source ~/.config/fish/config.fish"
 alias fish-config="nvim ~/.config/fish/config.fish"
 alias update-neovim="brew uninstall neovim && brew install --HEAD neovim"
+alias afk="open -a /System/Library/CoreServices/ScreenSaverEngine.app"
 
 #!/usr/bin/fish
 
