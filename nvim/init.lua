@@ -60,11 +60,9 @@ require("packer").startup(function(use)
   use("nvim-treesitter/nvim-treesitter-context")
   use({
     "williamboman/nvim-lsp-installer",
-    {
-      requires = {
-        { "neovim/nvim-lspconfig" },
-        { "folke/lua-dev.nvim" },
-      },
+    requires = {
+      { "neovim/nvim-lspconfig" },
+      { "folke/lua-dev.nvim" },
     },
   })
   use({
@@ -363,8 +361,8 @@ require("packer").startup(function(use)
           enable = false,
         },
         filters = {
-          dotfiles = true,
-          custom = { ".git", "node_modules", ".cache" },
+          --dotfiles = true,
+          custom = { ".git/", "node_modules", ".cache" },
         },
       })
     end,
@@ -458,3 +456,8 @@ vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').
 vim.diagnostic.config({
   virtual_text = true,
 })
+
+-- disable line numbers on terminal buffers
+vim.cmd([[
+  autocmd TermOpen * setlocal nonumber norelativenumber
+]])

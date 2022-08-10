@@ -118,8 +118,14 @@ require("go").setup({
   disable_defaults = true,
   lsp_keymaps = false,
   run_in_floaterm = true,
+  lsp_inlay_hints = {
+    enable = false,
+  },
   lsp_diag_virtual_text = {},
+  trouble = true, -- true: use trouble to open quickfix
+  luasnip = true,
   lsp_cfg = {
+
     capabilities = lsp_defaults.capabilities,
     on_attach = function(client, bufnr)
       lsp_defaults.on_attach(client, bufnr)
@@ -186,13 +192,13 @@ local events = { "BufEnter", "BufWinEnter", "CursorMoved" }
 vim.api.nvim_create_autocmd(events, {
   pattern = "*",
   callback = function()
-    config_winbar()
+    -- config_winbar()
   end,
 })
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "LspsagaUpdateSymbol",
   callback = function()
-    config_winbar()
+    -- config_winbar()
   end,
 })
