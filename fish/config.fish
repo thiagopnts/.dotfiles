@@ -75,3 +75,7 @@ set -gx PATH "$PNPM_HOME" $PATH
 
 replay export GPG_TTY=$(tty)
 gpgconf --launch gpg-agent
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
