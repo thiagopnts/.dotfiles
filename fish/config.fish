@@ -17,6 +17,8 @@ zoxide init fish | source
 
 starship init fish | source
 
+alias kube="kubectl"
+alias kub="kubectl"
 alias g="git"
 alias gst="git status"
 alias reload="source ~/.config/fish/config.fish"
