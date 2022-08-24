@@ -247,7 +247,7 @@ require("packer").startup(function(use)
             ["!"] = colors.red,
             t = colors.red,
           }
-          return { fg = mode_color[vim.fn.mode()], bg = colorscheme.sumiInk1 }
+          return { fg = mode_color[vim.fn.mode()], bg = colorscheme.sumiInk2 }
         end,
         padding = { right = 1 },
       })
@@ -263,9 +263,9 @@ require("packer").startup(function(use)
         sources = { "nvim_diagnostic" },
         symbols = { error = " ", warn = " ", info = " " },
         diagnostics_color = {
-          color_error = { fg = colors.red, bg = colorscheme.sumiInk0 },
-          color_warn = { fg = colors.yellow, bg = colorscheme.sumiInk0 },
-          color_info = { fg = colors.cyan, bg = colorscheme.sumiInk0 },
+          color_error = { fg = colors.red, bg = colorscheme.sumiInk2 },
+          color_warn = { fg = colors.yellow, bg = colorscheme.sumiInk2 },
+          color_info = { fg = colors.cyan, bg = colorscheme.sumiInk2 },
         },
       })
       ins_left({
@@ -316,9 +316,9 @@ require("packer").startup(function(use)
         "diff",
         symbols = { added = " ", modified = "柳", removed = " " },
         diff_color = {
-          added = { fg = colors.green, bg = colorscheme.sumiInk0 },
-          modified = { fg = colors.orange, bg = colorscheme.sumiInk0 },
-          removed = { fg = colors.red, bg = colorscheme.sumiInk0 },
+          added = { fg = colors.green, bg = colorscheme.sumiInk2 },
+          modified = { fg = colors.orange, bg = colorscheme.sumiInk2 },
+          removed = { fg = colors.red, bg = colorscheme.sumiInk2 },
         },
         cond = conditions.hide_in_width,
       })
@@ -327,13 +327,13 @@ require("packer").startup(function(use)
         "fileformat",
         fmt = string.upper,
         icons_enabled = true,
-        color = { fg = colors.green, bg = colorscheme.sumiInk0, gui = "bold" },
+        color = { fg = colors.green, bg = colorscheme.sumiInk2, gui = "bold" },
       })
 
       ins_right({
         "branch",
         icon = "",
-        color = { fg = colors.violet, bg = colorscheme.sumiInk0, gui = "bold" },
+        color = { fg = colors.violet, bg = colorscheme.sumiInk2, gui = "bold" },
       })
 
       ins_right({
