@@ -80,6 +80,7 @@ lspconfig.util.default_config = vim.tbl_deep_extend("force", lspconfig.util.defa
 
 local lang_servers = {
   gopls = {},
+  denols = {},
   zls = {},
   dockerls = {},
   terraformls = {},
@@ -103,6 +104,7 @@ for lang_server, config in pairs(lang_servers) do
 end
 
 lspconfig.tsserver.setup({
+  root_dir = lspconfig.util.root_pattern("package.json"),
   on_attach = function(client, bufnr)
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
