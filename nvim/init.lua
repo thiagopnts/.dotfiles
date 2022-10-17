@@ -21,7 +21,7 @@ require("packer").startup(function(use)
   })
   use("jose-elias-alvarez/nvim-lsp-ts-utils")
   use("rafamadriz/friendly-snippets")
-  use("folke/lua-dev.nvim")
+  use("folke/neodev.nvim")
   use("triglav/vim-visual-increment")
   -- TODO: learn more about
   use("nvim-treesitter/nvim-treesitter-textobjects")
@@ -62,7 +62,7 @@ require("packer").startup(function(use)
     "williamboman/nvim-lsp-installer",
     requires = {
       { "neovim/nvim-lspconfig" },
-      { "folke/lua-dev.nvim" },
+      { "folke/neodev.nvim" },
     },
   })
   use({

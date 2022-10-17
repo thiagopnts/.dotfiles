@@ -30,10 +30,10 @@ local lsp_defaults = {
   flags = {
     debounce_text_changes = 150,
   },
-  capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-  on_attach = function(client, bufnr)
+  capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  on_attach = function(client, _)
     vim.api.nvim_exec_autocmds("User", { pattern = "LspAttached" })
-    if client.resolved_capabilities.document_formatting then
+    if client.server_capabilities.documentFormattingProvider then
       vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format()")
     end
   end,
@@ -89,14 +89,12 @@ local lang_servers = {
   rust_analyzer = {},
   solargraph = {},
   clangd = {},
-  sumneko_lua = require("lua-dev").setup({
-    lspconfig = {
-      on_attach = function(client, _)
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
-      end,
-    },
-  }),
+  sumneko_lua = {
+    on_attach = function(client, _)
+      client.server_capabilities.documentFormattingProvider = false
+      client.server_capabilities.documentRangeFormattingProvider = false
+    end,
+  },
 }
 
 for lang_server, config in pairs(lang_servers) do
@@ -106,8 +104,8 @@ end
 lspconfig.tsserver.setup({
   root_dir = lspconfig.util.root_pattern("package.json"),
   on_attach = function(client, bufnr)
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
     local ts_utils = require("nvim-lsp-ts-utils")
     ts_utils.setup({})
     ts_utils.setup_client(client)
@@ -115,6 +113,7 @@ lspconfig.tsserver.setup({
   end,
 })
 
+require("neodev").setup({})
 require("rust-tools").setup({})
 require("go").setup({
   disable_defaults = true,
@@ -140,7 +139,6 @@ kind[12] = { "Function", " ", "#CBA6F7" }
 local saga = require("lspsaga")
 saga.init_lsp_saga({
   diagnostic_header = { " ", " ", " ", "ﴞ " },
-  show_diagnostic_source = true,
   symbol_in_winbar = {
     in_custom = true,
   },
@@ -194,13 +192,13 @@ local events = { "BufEnter", "BufWinEnter", "CursorMoved" }
 vim.api.nvim_create_autocmd(events, {
   pattern = "*",
   callback = function()
-    -- config_winbar()
+    config_winbar()
   end,
 })
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "LspsagaUpdateSymbol",
   callback = function()
-    -- config_winbar()
+    config_winbar()
   end,
 })
