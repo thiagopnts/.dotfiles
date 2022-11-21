@@ -134,3 +134,7 @@ vim.api.nvim_set_keymap("i", "<C-s><C-w>", "<C-o>:normal vg_S)A<cr>", {
   silent = true,
   desc = "wraps from current cursor position until the end of line with parenthesis in insert mode",
 })
+
+vim.api.nvim_set_keymap("n", "<Leader>gr", [[<Cmd>:GoGenReturn<CR>]], { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap("n", "<Leader>ut", [[<Cmd>:UndotreeToggle<CR>]], { noremap = true, silent = true })

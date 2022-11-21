@@ -108,28 +108,26 @@ require("packer").startup(function(use)
       require("nvim-autopairs").setup({})
     end,
   })
-  use({
-    "lewis6991/gitsigns.nvim",
-    config = function()
-      require("gitsigns").setup({})
-    end,
-  })
+  use("lewis6991/gitsigns.nvim")
   use({
     "bkad/CamelCaseMotion", -- can jump between camel|snakecase words
     config = function()
       vim.g.camelcasemotion_key = ","
     end,
   })
-  use({
-    "folke/trouble.nvim", -- rust lang support
-    config = function()
-      require("trouble").setup({})
-    end,
-  })
+  use("mbbill/undotree")
+  -- use({
+  --   "folke/trouble.nvim", -- rust lang support
+  --   config = function()
+  --     require("trouble").setup({})
+  --   end,
+  -- })
   use({
     "APZelos/blamer.nvim", -- show commit/blame current line
     config = function()
       vim.g.blamer_enabled = 1
+      vim.g.blamer_show_in_visual_modes = 1
+      vim.g.blamer_show_in_insert_modes = 0
     end,
   })
   use({
@@ -374,6 +372,7 @@ require("setup/mappings")
 require("setup/cmp")
 require("setup/lsp")
 require("setup/telescope")
+require("setup/gitsigns")
 require("setup/toggleterm")
 
 require("nvim-treesitter.configs").setup({
