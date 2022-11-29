@@ -16,9 +16,11 @@ require("packer").startup(function(use)
     "neovim/nvim-lspconfig",
   })
   use({
+
     "ray-x/go.nvim",
-    "ray-x/guihua.lua",
+    requires = { "ray-x/guihua.lua" },
   })
+  use("ellisonleao/glow.nvim")
   use("jose-elias-alvarez/nvim-lsp-ts-utils")
   use("rafamadriz/friendly-snippets")
   use("folke/neodev.nvim")
@@ -32,6 +34,9 @@ require("packer").startup(function(use)
   use({
     "yamatsum/nvim-nonicons",
     requires = { "kyazdani42/nvim-web-devicons" },
+    config = function()
+      require("nvim-nonicons").setup({})
+    end,
   })
   use("tpope/vim-fugitive")
   use("christoomey/vim-tmux-navigator")
@@ -99,7 +104,15 @@ require("packer").startup(function(use)
   use({
     "j-hui/fidget.nvim",
     config = function()
-      require("fidget").setup({})
+      require("fidget").setup({
+        text = {
+          spinner = "dots",
+        },
+        align = {
+          bottom = true,
+          right = true,
+        },
+      })
     end,
   })
   use({
@@ -116,12 +129,35 @@ require("packer").startup(function(use)
     end,
   })
   use("mbbill/undotree")
-  -- use({
-  --   "folke/trouble.nvim", -- rust lang support
-  --   config = function()
-  --     require("trouble").setup({})
-  --   end,
-  -- })
+  use({
+    "folke/trouble.nvim", -- rust lang support
+    config = function()
+      require("trouble").setup({
+        position = "bottom",
+        icons = true,
+        action_keys = {
+          close = "q", -- close the list
+          cancel = "<esc>", -- cancel the preview and get back to your last window / buffer / cursor
+          refresh = "r", -- manually refresh
+          jump = { "<cr>", "<tab>" }, -- jump to the diagnostic or open / close folds
+          open_split = { "i" }, -- open buffer in new split
+          open_vsplit = { "s" }, -- open buffer in new vsplit
+          open_tab = {}, -- { '<c-t>' }, -- open buffer in new tab
+          jump_close = { "o" }, -- jump to the diagnostic and close the list
+          toggle_mode = "m", -- toggle between 'workspace' and 'document' diagnostics mode
+          toggle_preview = "P", -- toggle auto_preview
+          hover = "K", -- opens a small popup with the full multiline message
+          preview = "p", -- preview the diagnostic location
+          close_folds = { "zM", "zm" }, -- close all folds
+          open_folds = { "zR", "zr" }, -- open all folds
+          toggle_fold = { "zA", "za" }, -- toggle fold of current file
+          previous = "k", -- preview item
+          next = "j", -- next item
+        },
+        use_diagnostic_signs = true,
+      })
+    end,
+  })
   use({
     "APZelos/blamer.nvim", -- show commit/blame current line
     config = function()
@@ -346,25 +382,44 @@ require("packer").startup(function(use)
     end,
   })
   use({
-    "kyazdani42/nvim-tree.lua",
+    "nvim-neo-tree/neo-tree.nvim",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+    },
     config = function()
-      vim.g.nvim_tree_side = "left"
-      vim.g.nvim_tree_width = 25
-      vim.g.nvim_tree_allow_resize = 1
-      require("nvim-tree").setup({
-        open_on_setup = false,
-        open_on_tab = false,
-        update_focused_file = { enable = true },
-        git = {
-          enable = false,
+      require("neo-tree").setup({
+        close_if_last_window = true,
+        buffers = {
+          follow_current_file = true,
         },
-        filters = {
-          --dotfiles = true,
-          custom = { ".git/", "node_modules", ".cache" },
+        filetype = {
+          follow_current_file = true,
         },
       })
     end,
   })
+  -- use({
+  --   "kyazdani42/nvim-tree.lua",
+  --   config = function()
+  --     vim.g.nvim_tree_side = "left"
+  --     vim.g.nvim_tree_width = 25
+  --     vim.g.nvim_tree_allow_resize = 1
+  --     require("nvim-tree").setup({
+  --       open_on_setup = false,
+  --       open_on_tab = false,
+  --       update_focused_file = { enable = true },
+  --       git = {
+  --         enable = false,
+  --       },
+  --       filters = {
+  --         --dotfiles = true,
+  --         custom = { ".git/", "node_modules", ".cache" },
+  --       },
+  --     })
+  --   end,
+  -- })
 end)
 
 require("setup/opts")

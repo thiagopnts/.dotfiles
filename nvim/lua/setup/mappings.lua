@@ -40,8 +40,8 @@ vim.api.nvim_set_keymap("n", "J", "mzJ`z", { noremap = true, silent = true })
 -- clear search hl
 vim.api.nvim_set_keymap("n", "<Leader>cc", [[<Cmd> noh<CR>]], { noremap = true, silent = true })
 
--- open/close nvim tree
-vim.api.nvim_set_keymap("n", "<Leader>k", [[<Cmd> NvimTreeToggle<CR>]], { noremap = true, silent = true })
+-- open/close neo tree
+vim.api.nvim_set_keymap("n", "<Leader>k", [[<Cmd> Neotree toggle<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>[", [[<Cmd> bp<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>]", [[<Cmd> bn<CR>]], { noremap = true, silent = true })
 -- map Y to yank curr line position up until the end, similar with D, C, etc
@@ -83,10 +83,6 @@ vim.api.nvim_set_keymap("n", "J", "mzJ`z", { noremap = true, silent = true })
 -- undo break points
 --vim.api.nvim_set_keymap("i", ".", [[.<c-g>u]], {noremap = true, silent = true})
 
--- open/close nvim tree
-vim.api.nvim_set_keymap("n", "<Leader>k", [[<Cmd> NvimTreeToggle<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>[", [[<Cmd> bp<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>]", [[<Cmd> bn<CR>]], { noremap = true, silent = true })
 -- map Y to yank curr line position up until the end, similar with D, C, etc
 vim.api.nvim_set_keymap("n", "Y", "y$", { noremap = true, silent = true })
 
@@ -126,6 +122,8 @@ vim.api.nvim_set_keymap(
   { noremap = true, silent = true }
 )
 
+vim.api.nvim_set_keymap("n", "<Leader>T", [[<Cmd>:TroubleToggle<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Leader>Tr", [[<Cmd>:TroubleRefresh<CR>]], { noremap = true, silent = true })
 --vim.api.nvim_set_keymap("n", "<Leader>cc", [[<Cmd>:cc<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>cn", [[<Cmd>:cn<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>cp", [[<Cmd>:cp<CR>]], { noremap = true, silent = true })

@@ -30,6 +30,9 @@ local lsp_defaults = {
   flags = {
     debounce_text_changes = 150,
   },
+  root_dir = vim.loop.cwd,
+  settings = { telemetry = false },
+  -- offset_encoding = "utf-8",
   capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
   on_attach = function(client, _)
     vim.api.nvim_exec_autocmds("User", { pattern = "LspAttached" })
@@ -48,7 +51,7 @@ null_ls.setup({
     null_ls.builtins.formatting.black,
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.zigfmt,
-    null_ls.builtins.formatting.prettier,
+    -- null_ls.builtins.formatting.prettier,
 
     null_ls.builtins.diagnostics.hadolint,
     null_ls.builtins.diagnostics.checkmake,
@@ -76,7 +79,7 @@ null_ls.setup({
 local lspconfig = require("lspconfig")
 
 lspconfig.util.default_config = vim.tbl_deep_extend("force", lspconfig.util.default_config, lsp_defaults)
-    or lspconfig.util.default_config
+  or lspconfig.util.default_config
 
 local lang_servers = {
   gopls = {},
@@ -90,6 +93,19 @@ local lang_servers = {
   solargraph = {},
   clangd = {},
   sumneko_lua = {
+    settings = {
+      Lua = {
+        diagnostics = {
+          globals = { "vim" },
+        },
+        workspace = {
+          library = {
+            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+            [vim.fn.stdpath("config") .. "/lua"] = true,
+          },
+        },
+      },
+    },
     on_attach = function(client, _)
       client.server_capabilities.documentFormattingProvider = false
       client.server_capabilities.documentRangeFormattingProvider = false
@@ -117,21 +133,27 @@ require("neodev").setup({})
 require("rust-tools").setup({})
 require("go").setup({
   disable_defaults = true,
+  lsp_codelens = true,
   lsp_keymaps = false,
   run_in_floaterm = true,
+  lsp_diag_hdlr = true,
+  textobjects = true,
   lsp_inlay_hints = {
-    enable = false,
+    enable = true,
+    only_current_line = false,
+    show_variable_name = true,
+    show_parameter_hints = true,
+    parameter_hints_prefix = " ",
+    other_hints_prefix = "=> ",
+    max_len_align = false,
+    max_len_align_padding = 1,
+    right_align = false,
+    highlight = "Comment",
   },
   lsp_diag_virtual_text = {},
   trouble = true, -- true: use trouble to open quickfix
   luasnip = true,
-  lsp_cfg = {
-
-    capabilities = lsp_defaults.capabilities,
-    on_attach = function(client, bufnr)
-      lsp_defaults.on_attach(client, bufnr)
-    end,
-  },
+  lsp_cfg = lsp_defaults,
 })
 
 local kind = require("lspsaga.lspkind")
@@ -168,6 +190,7 @@ local function config_winbar()
     ["toggleterm"] = true,
     ["prompt"] = true,
     ["NvimTree"] = true,
+    ["NeoTree"] = true,
     ["help"] = true,
   } -- Ignore float windows and exclude filetype
   if vim.api.nvim_win_get_config(0).zindex or exclude[vim.bo.filetype] then
