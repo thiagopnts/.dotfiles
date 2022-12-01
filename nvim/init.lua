@@ -158,14 +158,14 @@ require("packer").startup(function(use)
       })
     end,
   })
-  use({
-    "APZelos/blamer.nvim", -- show commit/blame current line
-    config = function()
-      vim.g.blamer_enabled = 1
-      vim.g.blamer_show_in_visual_modes = 1
-      vim.g.blamer_show_in_insert_modes = 0
-    end,
-  })
+  -- use({
+  --   "APZelos/blamer.nvim", -- show commit/blame current line
+  --   config = function()
+  --     vim.g.blamer_enabled = 1
+  --     vim.g.blamer_show_in_visual_modes = 1
+  --     vim.g.blamer_show_in_insert_modes = 0
+  --   end,
+  -- })
   use({
     "nvim-lualine/lualine.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
