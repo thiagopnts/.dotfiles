@@ -24,10 +24,10 @@ require("kanagawa").setup({
 })
 
 vim.cmd([[colorscheme kanagawa]])
--- vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]], false)
--- vim.diagnostic.config({
---   virtual_text = true,
--- })
+vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]], false)
+vim.diagnostic.config({
+  virtual_text = true,
+})
 --
 -- -- disable line numbers on terminal buffers
 -- vim.cmd([[
