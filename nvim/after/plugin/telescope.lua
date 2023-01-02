@@ -6,15 +6,6 @@ require("telescope").setup({
     },
   },
   defaults = {
-    vimgrep_arguments = {
-      "rg",
-      "--color=never",
-      "--no-heading",
-      "--with-filename",
-      "--line-number",
-      "--column",
-      "--smart-case",
-    },
     prompt_prefix = "",
     selection_caret = "",
     entry_prefix = "",
@@ -49,3 +40,11 @@ require("telescope").setup({
 })
 require("telescope").load_extension("fzy_native")
 require("telescope").load_extension("emoji")
+
+local builtin = require("telescope.builtin")
+
+vim.keymap.set("n", "<Leader>c", builtin.commands)
+vim.keymap.set("n", "<Leader>ff", builtin.git_files)
+vim.keymap.set("n", "<Leader>pf", builtin.find_files)
+vim.keymap.set("n", "<Leader>b", builtin.buffers)
+vim.keymap.set("n", "<Leader>ag", builtin.grep_string)

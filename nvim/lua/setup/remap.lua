@@ -1,8 +1,7 @@
 vim.g.mapleader = " "
--- when in terminal mode(:term), map ESC to exit instead of the default c-\ c-n
-vim.api.nvim_set_keymap("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap("n", "<Leader>c", [[<Cmd>:Telescope commands<CR>]], { noremap = true, silent = true })
+-- when in terminal mode(:term), map ESC to exit instead of the default c-\ c-n
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
 
 -- show symbol outline
 vim.api.nvim_set_keymap("n", "<Leader>so", [[<Cmd>:SymbolsOutline<CR>]], { noremap = true, silent = true })
@@ -13,9 +12,6 @@ vim.api.nvim_set_keymap("n", "<Leader>so", [[<Cmd>:SymbolsOutline<CR>]], { norem
 -- might be worth looking into hooking lsp.buf.rename into it instead?
 vim.api.nvim_set_keymap("n", "<Leader>rn", [[<Cmd>Lspsaga rename<CR>]], { noremap = true, silent = true })
 
--- create new file
-vim.api.nvim_set_keymap("n", "<Leader>fn", [[<Cmd> DashboardNewFile<CR>]], { noremap = true, silent = true })
-
 -- eval current lua file
 vim.api.nvim_set_keymap("n", "<Leader>rr", [[<Cmd> luafile %<CR>]], { noremap = true, silent = true })
 
@@ -24,8 +20,6 @@ vim.api.nvim_set_keymap("n", "<Leader>rr", [[<Cmd> luafile %<CR>]], { noremap = 
 vim.api.nvim_set_keymap("n", "<Leader>tf", [[<Cmd>GoTestFunc<CR>]], { noremap = true, silent = true })
 
 -- FIXME: this should be bound only on lua files
--- eval current lua file
-vim.api.nvim_set_keymap("n", "<Leader>rr", [[<Cmd> luafile %<CR>]], { noremap = true, silent = true })
 
 -- keep everything centered
 vim.api.nvim_set_keymap("n", "n", "nzzzv", { noremap = true, silent = true })
@@ -53,13 +47,6 @@ vim.api.nvim_set_keymap("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, silent =
 vim.api.nvim_set_keymap("i", "<C-j>", "<esc>:m .+1<CR>==i", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "<C-k>", "<esc>:m .-2<CR>==i", { noremap = true, silent = true })
 
--- telescope mappings
-vim.api.nvim_set_keymap("n", "<Leader>ff", "<cmd>Telescope find_files<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>em", "<cmd>Telescope emoji<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>b", ":Telescope buffers<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>ag", ":Telescope live_grep<cr>", { noremap = true, silent = true })
--- git fugitive mappings
-vim.api.nvim_set_keymap("n", "<Leader>gs", ":Gstatus<cr>", { noremap = true, silent = true })
 -- git merge accept right
 vim.api.nvim_set_keymap("n", "<Leader>j", ":diffget //3", { noremap = true, silent = true })
 -- git merge accept left
@@ -70,18 +57,8 @@ vim.api.nvim_set_keymap("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, silent =
 -- create new file
 vim.api.nvim_set_keymap("n", "<Leader>fn", [[<Cmd> DashboardNewFile<CR>]], { noremap = true, silent = true })
 
--- eval current lua file
-vim.api.nvim_set_keymap("n", "<Leader>rr", [[<Cmd> luafile %<CR>]], { noremap = true, silent = true })
 -- show current line git blame
 vim.api.nvim_set_keymap("n", "<Leader>gb", [[<Cmd> Gitsigns blame_line<CR>]], { noremap = true, silent = true })
-
--- keep everything centered
-vim.api.nvim_set_keymap("n", "n", "nzzzv", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "N", "Nzzzv", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "J", "mzJ`z", { noremap = true, silent = true })
-
--- undo break points
---vim.api.nvim_set_keymap("i", ".", [[.<c-g>u]], {noremap = true, silent = true})
 
 -- map Y to yank curr line position up until the end, similar with D, C, etc
 vim.api.nvim_set_keymap("n", "Y", "y$", { noremap = true, silent = true })
@@ -92,10 +69,6 @@ vim.api.nvim_set_keymap("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, silent =
 vim.api.nvim_set_keymap("i", "<C-j>", "<esc>:m .+1<CR>==i", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "<C-k>", "<esc>:m .-2<CR>==i", { noremap = true, silent = true })
 
--- telescope mappings
-vim.api.nvim_set_keymap("n", "<Leader>ff", "<cmd>Telescope find_files<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>b", ":Telescope buffers<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>ag", ":Telescope live_grep<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-]>", ":lua vim.lsp.buf.definition()<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap(
   "n",
@@ -134,5 +107,3 @@ vim.api.nvim_set_keymap("i", "<C-s><C-w>", "<C-o>:normal vg_S)A<cr>", {
 })
 
 vim.api.nvim_set_keymap("n", "<Leader>gr", [[<Cmd>:GoGenReturn<CR>]], { noremap = true, silent = true })
-
-vim.api.nvim_set_keymap("n", "<Leader>ut", [[<Cmd>:UndotreeToggle<CR>]], { noremap = true, silent = true })
