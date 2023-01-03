@@ -3,6 +3,8 @@ vim.g.mapleader = " "
 -- when in terminal mode(:term), map ESC to exit instead of the default c-\ c-n
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
 
+vim.keymap.set("n", "<leader>bd", vim.cmd.bd)
+
 -- show symbol outline
 vim.api.nvim_set_keymap("n", "<Leader>so", [[<Cmd>:SymbolsOutline<CR>]], { noremap = true, silent = true })
 
