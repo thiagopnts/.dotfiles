@@ -5,6 +5,8 @@ vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
 
 vim.keymap.set("n", "<leader>bd", vim.cmd.bd)
 
+vim.keymap.set("n", "<leader>qq", [[<cmd>:q!<cr>]])
+
 -- show symbol outline
 vim.api.nvim_set_keymap("n", "<Leader>so", [[<Cmd>:SymbolsOutline<CR>]], { noremap = true, silent = true })
 
