@@ -81,7 +81,7 @@ return require("packer").startup(function(use)
       require("Comment").setup({})
     end,
   })
-  use("j-hui/fidget.nvim")
+  -- use({ "j-hui/fidget.nvim", branch = "legacy" })
   use({
     "windwp/nvim-autopairs",
     config = function()
@@ -111,6 +111,7 @@ return require("packer").startup(function(use)
   })
   use({
     "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
     requires = {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended

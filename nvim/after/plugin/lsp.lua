@@ -200,10 +200,14 @@ null_ls.setup({
   end,
 })
 
-local kind = require("lspsaga.lspkind")
-kind[12] = { "Function", " ", "#CBA6F7" }
-local saga = require("lspsaga")
-saga.init_lsp_saga({
+-- local kind = require("lspsaga.lspkind")
+-- kind[12] = { "Function", " ", "#CBA6F7" }
+require("lspsaga").setup({
+  ui = {
+    kind = {
+      ["Function"] = { " ", "#CBA6F7" },
+    },
+  },
   diagnostic_header = { " ", " ", " ", "ﴞ " },
   symbol_in_winbar = {
     in_custom = true,
@@ -254,18 +258,18 @@ local function config_winbar()
   end
 end
 
-local events = { "BufEnter", "BufWinEnter", "CursorMoved" }
+-- local events = { "BufEnter", "BufWinEnter", "CursorMoved" }
 
-vim.api.nvim_create_autocmd(events, {
-  pattern = "*",
-  callback = function()
-    config_winbar()
-  end,
-})
+-- vim.api.nvim_create_autocmd(events, {
+--   pattern = "*",
+--   callback = function()
+--     config_winbar()
+--   end,
+-- })
 
-vim.api.nvim_create_autocmd("User", {
-  pattern = "LspsagaUpdateSymbol",
-  callback = function()
-    config_winbar()
-  end,
-})
+-- vim.api.nvim_create_autocmd("User", {
+--   pattern = "LspsagaUpdateSymbol",
+--   callback = function()
+--     config_winbar()
+--   end,
+-- })

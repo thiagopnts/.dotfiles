@@ -44,5 +44,6 @@ for opt, value in pairs({
   vim.opt[opt] = value
 end
 
-vim.opt.listchars:append("eol:↴")
+-- vim.opt.listchars:append("eol:↴")
+vim.opt.listchars:append("eol:~")
 vim.opt.listchars:append("tab:  ")
