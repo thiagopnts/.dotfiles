@@ -4,7 +4,6 @@ return require("packer").startup(function(use)
   use("wbthomason/packer.nvim")
   -- client for language servers
   use({
-
     "ray-x/go.nvim",
     requires = { "ray-x/guihua.lua" },
   })
@@ -12,13 +11,27 @@ return require("packer").startup(function(use)
   use("jose-elias-alvarez/nvim-lsp-ts-utils")
   use("rafamadriz/friendly-snippets")
   use("folke/neodev.nvim")
+  use({
+    "thiagopnts/nvim-java",
+    requires = {
+      'nvim-java/lua-async-await',
+      'nvim-java/nvim-java-core',
+      'nvim-java/nvim-java-test',
+      'nvim-java/nvim-java-dap',
+      'MunifTanjim/nui.nvim',
+      'neovim/nvim-lspconfig',
+      'mfussenegger/nvim-dap',
+    },
+  })
   use("triglav/vim-visual-increment")
+  use("rcarriga/nvim-notify")
   -- TODO: learn more about
   use("nvim-treesitter/nvim-treesitter-textobjects")
-  use("jose-elias-alvarez/null-ls.nvim")
-  use({ "glepnir/lspsaga.nvim", branch = "main" })
+  use("mfussenegger/nvim-lint")
+  use("lukas-reineke/lsp-format.nvim")
+  use("nvimdev/lspsaga.nvim")
   use("axelf4/vim-strip-trailing-whitespace") -- remove trailing whitespace
-  use("kyazdani42/nvim-web-devicons") -- for file icons
+  use("kyazdani42/nvim-web-devicons")         -- for file icons
   use({
     "yamatsum/nvim-nonicons",
     requires = { "kyazdani42/nvim-web-devicons" },
@@ -28,8 +41,8 @@ return require("packer").startup(function(use)
   })
   use("tpope/vim-fugitive")
   use("christoomey/vim-tmux-navigator")
-  use("cespare/vim-toml") -- toml syntax highlight
-  use("LnL7/vim-nix") -- nix syntax support
+  use("cespare/vim-toml")         -- toml syntax highlight
+  use("LnL7/vim-nix")             -- nix syntax support
   use("ray-x/lsp_signature.nvim") -- show function signature when you type
   -- repeat unrepeatable commands
   use("tpope/vim-repeat")

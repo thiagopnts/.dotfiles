@@ -1,0 +1,11 @@
+-- require("lsp-format").setup({})
+--
+-- require("lspconfig").lua_ls.setup({
+--   on_attach = function (client, bufnr)
+--     print("ok...")
+--     require("lsp-format").on_attach(client, bufnr)
+--   end
+-- })
+-- require("lspconfig").gopls.setup({
+--   on_attach = require("lsp-format").on_attach,
+-- })

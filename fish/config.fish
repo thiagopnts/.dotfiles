@@ -7,6 +7,7 @@ set -U grcplugin_ls --color -l
 # set a custom config path just so we can have starship on its own dir in the dotfiles
 set -U STARSHIP_CONFIG ~/.config/starship/starship.toml
 
+fish_add_path /opt/homebrew/opt/openjdk/bin
 fish_add_path $HOME/.cargo/bin
 fish_add_path /nix/var/nix/profiles/default/bin
 fish_add_path /opt/homebrew/bin

@@ -23,7 +23,7 @@ require("kanagawa").setup({
 })
 
 vim.cmd([[colorscheme kanagawa-wave]])
-vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]], false)
+-- vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]], false)
 vim.diagnostic.config({
   virtual_text = true,
 })

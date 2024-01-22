@@ -3,9 +3,14 @@ vim.g.mapleader = " "
 -- when in terminal mode(:term), map ESC to exit instead of the default c-\ c-n
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
 
+-- delete current buffer
 vim.keymap.set("n", "<leader>bd", vim.cmd.bd)
-
+-- quit editor
 vim.keymap.set("n", "<leader>qq", [[<cmd>:q!<cr>]])
+-- toggle undo tree
+vim.keymap.set("n", "<Leader>ut", vim.cmd.UndotreeToggle)
+-- generate return for a go function
+vim.keymap.set("n", "<Leader>gr",vim.cmd.GoGenReturn)
 
 -- show symbol outline
 vim.api.nvim_set_keymap("n", "<Leader>so", [[<Cmd>:SymbolsOutline<CR>]], { noremap = true, silent = true })
@@ -110,4 +115,3 @@ vim.api.nvim_set_keymap("i", "<C-s><C-w>", "<C-o>:normal vg_S)A<cr>", {
   desc = "wraps from current cursor position until the end of line with parenthesis in insert mode",
 })
 
-vim.api.nvim_set_keymap("n", "<Leader>gr", [[<Cmd>:GoGenReturn<CR>]], { noremap = true, silent = true })
