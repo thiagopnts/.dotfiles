@@ -41,27 +41,38 @@ require("lsp_signature").setup({
 })
 
 local lsp = require("lsp-zero")
-lsp.preset("recommended")
-lsp.ensure_installed({
-  "tsserver",
-  "eslint",
-  "sumneko_lua",
-  "rust_analyzer",
-  "gopls",
-  "denols",
-  "zls",
-  "terraformls",
-  "pyright",
-  "bashls",
-  "solargraph",
-  "clangd",
+require('mason').setup({})
+require('mason-lspconfig').setup({
+    ensure_installed = {
+      "tsserver",
+      "eslint",
+      "jdtls",
+      "sumneko_lua",
+      "rust_analyzer",
+      "gopls",
+      "denols",
+      "zls",
+      "terraformls",
+      "pyright",
+      "bashls",
+      "solargraph",
+      "clangd",
+  },
+  handlers = {
+    lsp.default_setup,
+    lua_ls = function()
+      local lua_opts = lsp.nvim_lua_ls()
+      require('lspconfig').lua_ls.setup(lua_opts)
+    end,
+  }
 })
+lsp.preset("recommended")
 
-lsp.nvim_workspace()
-local cmp = require("cmp")
 local luasnip = require("luasnip")
 require("luasnip.loaders.from_vscode").lazy_load()
-lsp.setup_nvim_cmp({
+
+local cmp = require("cmp")
+cmp.setup({
   experimental = {
     ghost_text = true,
   },

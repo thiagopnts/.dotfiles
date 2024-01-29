@@ -5,6 +5,11 @@ require("telescope").setup({
       override_file_sorter = true,
     },
   },
+  pickers = {
+    find_files = {
+      theme = "dropdown",
+    }
+  },
   defaults = {
     prompt_prefix = "",
     selection_caret = "",
@@ -12,7 +17,7 @@ require("telescope").setup({
     initial_mode = "insert",
     selection_strategy = "reset",
     sorting_strategy = "descending",
-    layout_strategy = "horizontal",
+    -- layout_strategy = "horizontal",
     layout_config = {
       horizontal = {
         mirror = false,
