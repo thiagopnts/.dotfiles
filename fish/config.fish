@@ -7,10 +7,18 @@ set -U grcplugin_ls --color -l
 # set a custom config path just so we can have starship on its own dir in the dotfiles
 set -U STARSHIP_CONFIG ~/.config/starship/starship.toml
 
+set -x EDITOR nvim
+
+set -gx NVM_DIR (brew --prefix nvm)
+
 fish_add_path $HOME/.cargo/bin
+fish_add_path /usr/local/bin/swissknife
 fish_add_path /nix/var/nix/profiles/default/bin
 fish_add_path /opt/homebrew/bin
 fish_add_path $HOME/go/bin
+fish_add_path $HOME/.local/bin
+fish_add_path /Library/Frameworks/GStreamer.framework/Versions/Current/bin
+
 #replay . /nix/var/nix/profiles/default/etc/profile.d/nix.sh
 
 zoxide init fish | source
@@ -20,6 +28,7 @@ starship init fish | source
 alias kube="kubectl"
 alias kub="kubectl"
 alias g="git"
+alias note="nvim $(mktemp)"
 alias gst="git status"
 alias reload="source ~/.config/fish/config.fish"
 alias fish-config="nvim ~/.config/fish/config.fish"

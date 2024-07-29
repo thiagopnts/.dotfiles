@@ -47,7 +47,7 @@ require('mason-lspconfig').setup({
       "tsserver",
       "eslint",
       "jdtls",
-      "sumneko_lua",
+      "lua_ls",
       "rust_analyzer",
       "gopls",
       "denols",
@@ -55,7 +55,6 @@ require('mason-lspconfig').setup({
       "terraformls",
       "pyright",
       "bashls",
-      "solargraph",
       "clangd",
   },
   handlers = {
@@ -90,9 +89,11 @@ cmp.setup({
       return vim_item
     end,
   },
-  documentation = {
-    completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
+  window = {
+    documentation = {
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
+    },
   },
   mapping = cmp.mapping.preset.insert({
     -- pick the closest snipet completion match out of all sources
@@ -142,7 +143,10 @@ require("go").setup({
   lsp_codelens = true,
   lsp_keymaps = false,
   run_in_floaterm = true,
-  lsp_diag_hdlr = true,
+  diagnostic = {
+    hdlr = true,
+    virtual_text = {},
+  },
   textobjects = true,
   lsp_inlay_hints = {
     enable = true,
@@ -156,7 +160,6 @@ require("go").setup({
     right_align = false,
     highlight = "Comment",
   },
-  lsp_diag_virtual_text = {},
   trouble = true, -- true: use trouble to open quickfix
   luasnip = true,
   lsp_cfg = {
@@ -216,7 +219,7 @@ null_ls.setup({
 require("lspsaga").setup({
   ui = {
     kind = {
-      ["Function"] = { " ", "#CBA6F7" },
+--      ["Function"] = { " ", "#CBA6F7" },
     },
   },
   diagnostic_header = { " ", " ", " ", "ﴞ " },
