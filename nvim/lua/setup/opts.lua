@@ -6,8 +6,8 @@
 -- with this we get a warning in our faces.
 for opt, value in pairs({
   compatible = false,
-  tabstop = 2,
-  shiftwidth = 2,
+  tabstop = 4,
+  shiftwidth = 4,
   undofile = true,
   undodir = os.getenv("HOME") .. "/.vim/undodir",
   shiftround = true,
@@ -21,7 +21,7 @@ for opt, value in pairs({
   swapfile = false,
   wrap = true,
   background = "dark",
-  softtabstop = 2,
+  softtabstop = 4,
   relativenumber = true, -- show line numbers relative
   number = true,
   colorcolumn = { 90 },
@@ -29,7 +29,7 @@ for opt, value in pairs({
   termguicolors = true,
   ignorecase = true,
   scrolloff = 999, -- keep cursor centered
-  hlsearch = false,
+  hlsearch = true,
   incsearch = true,
   smartindent = true,
   inccommand = "nosplit",
@@ -47,3 +47,4 @@ end
 -- vim.opt.listchars:append("eol:↴")
 vim.opt.listchars:append("eol:~")
 vim.opt.listchars:append("tab:  ")
+vim.g.camelcasemotion_key = ","

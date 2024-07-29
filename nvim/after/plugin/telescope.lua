@@ -7,7 +7,7 @@ require("telescope").setup({
   },
   pickers = {
     find_files = {
-      theme = "dropdown",
+      theme = "ivy",
     }
   },
   defaults = {
@@ -49,7 +49,6 @@ require("telescope").load_extension("emoji")
 local builtin = require("telescope.builtin")
 
 vim.keymap.set("n", "<Leader>c", builtin.commands)
-vim.keymap.set("n", "<Leader>ff", builtin.git_files)
-vim.keymap.set("n", "<Leader>pf", builtin.find_files)
+vim.keymap.set("n", "<Leader>ff", builtin.find_files)
 vim.keymap.set("n", "<Leader>bf", builtin.buffers)
 vim.keymap.set("n", "<Leader>ag", builtin.live_grep)

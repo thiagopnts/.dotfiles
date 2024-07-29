@@ -1,9 +1,1 @@
--- require("fidget").setup({
---   text = {
---     spinner = "dots",
---   },
---   align = {
---     bottom = true,
---     right = true,
---   },
--- })
+require("fidget").setup({})

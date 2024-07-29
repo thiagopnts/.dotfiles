@@ -12,4 +12,22 @@ require("neo-tree").setup({
       leave_dirs_open = false,
     },
   },
+  default_component_configs = {
+    icon = {
+      default = "",
+    },
+    git_status = {
+      symbols = {
+        added     = " ",
+        deleted   = " ",
+        modified  = " ",
+        renamed   = " ",
+        untracked = " ",
+        ignored   = " ",
+        unstaged  = "󰄱 ",
+        staged    = "󰄵 ",
+        conflict  = " ",
+      }
+    }
+  }
 })
