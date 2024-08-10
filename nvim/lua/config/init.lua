@@ -1,14 +1,82 @@
-vim.g.mapleader = " "
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
+end
 
+vim.opt.rtp:prepend(lazypath)
+
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+vim.opt.compatible = false
+vim.opt.syntax = "on"
+vim.opt.signcolumn = "yes"
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.undofile = true
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.shiftround = true
+vim.opt.expandtab = true
+vim.opt.encoding = "utf-8"
+vim.opt.autoindent = true
+vim.opt.fileencoding = "utf-8"
+vim.opt.fileencodings = { "utf-8" }
+vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.swapfile = false
+vim.opt.wrap = true
+vim.opt.background = "dark"
+vim.opt.softtabstop = 2
+vim.opt.relativenumber = true
+vim.opt.number = true
+vim.opt.colorcolumn = { 90 }
+vim.opt.mouse = "a"
+vim.opt.termguicolors = true
+vim.opt.ignorecase = true
+vim.opt.scrolloff = 999 -- keep cursor centered
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
+vim.opt.smartindent = true
+vim.opt.inccommand = "nosplit"
+vim.opt.clipboard = "unnamedplus"
+vim.opt.guifont = "CaskaydiaCove Nerd Font:h16"
+vim.opt.laststatus = 3
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
+vim.opt.list = true
+--  vim.opt.cmdheight = 0
+-- vim.opt.winbar = "%f"
+
+-- vim.opt.listchars:append("eol:↴")
+vim.opt.listchars:append("eol:~")
+vim.opt.listchars:append("tab:  ")
+vim.g.camelcasemotion_key = ","
+
+require("lazy").setup({
+  spec = {
+    { import = "plugins" },
+  },
+  install = { colorscheme = { "kanagawa" } },
+  -- automatically check for plugin updates
+  checker = { enabled = true },
+})
+
+-- remaps
 -- when in terminal mode(:term), map ESC to exit instead of the default c-\ c-n
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
 
 vim.keymap.set("n", "<leader>bd", vim.cmd.bd)
 
 vim.keymap.set("n", "<leader>qq", [[<cmd>:q!<cr>]])
-
--- show symbol outline
-vim.api.nvim_set_keymap("n", "<Leader>so", [[<Cmd>:SymbolsOutline<CR>]], { noremap = true, silent = true })
 
 -- rename current symbol
 -- vim.api.nvim_set_keymap("n", "<Leader>rn", [[<Cmd>lua vim.lsp.buf.rename()<CR>]], { noremap = true, silent = true })
