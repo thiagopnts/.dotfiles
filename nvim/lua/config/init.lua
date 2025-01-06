@@ -21,9 +21,11 @@ vim.g.maplocalleader = "\\"
 vim.opt.compatible = false
 vim.opt.syntax = "on"
 vim.opt.signcolumn = "yes"
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
 vim.opt.undofile = true
+vim.opt.cursorline = true
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.shiftround = true
 vim.opt.expandtab = true
@@ -36,7 +38,6 @@ vim.opt.writebackup = false
 vim.opt.swapfile = false
 vim.opt.wrap = true
 vim.opt.background = "dark"
-vim.opt.softtabstop = 2
 vim.opt.relativenumber = true
 vim.opt.number = true
 vim.opt.colorcolumn = { 90 }
@@ -67,7 +68,7 @@ require("lazy").setup({
   },
   install = { colorscheme = { "kanagawa" } },
   -- automatically check for plugin updates
-  checker = { enabled = true },
+  checker = { enabled = true, notify = false },
 })
 
 -- remaps
@@ -119,10 +120,6 @@ vim.api.nvim_set_keymap("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, silent =
 vim.api.nvim_set_keymap("i", "<C-j>", "<esc>:m .+1<CR>==i", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "<C-k>", "<esc>:m .-2<CR>==i", { noremap = true, silent = true })
 
--- git merge accept right
-vim.api.nvim_set_keymap("n", "<Leader>j", ":diffget //3", { noremap = true, silent = true })
--- git merge accept left
-vim.api.nvim_set_keymap("n", "<Leader>f", ":diffget //2", { noremap = true, silent = true })
 -- when in terminal mode(:term), map ESC to exit instead of the default c-\ c-n
 vim.api.nvim_set_keymap("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, silent = true })
 
@@ -149,9 +146,9 @@ vim.api.nvim_set_keymap(
   { noremap = true, silent = true }
 )
 -- git merge accept right
-vim.api.nvim_set_keymap("n", "<Leader>j", ":diffget //3", { noremap = true, silent = true })
+--vim.api.nvim_set_keymap("n", "<Leader>j", ":diffget //3", { noremap = true, silent = true })
 -- git merge accept left
-vim.api.nvim_set_keymap("n", "<Leader>f", ":diffget //2", { noremap = true, silent = true })
+--vim.api.nvim_set_keymap("n", "<Leader>f", ":diffget //2", { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap("n", "K", ":Lspsaga hover_doc", { noremap = true, silent = true })
 

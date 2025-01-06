@@ -1,3 +1,4 @@
+
 return {
   { "nvim-telescope/telescope-fzy-native.nvim", dependencies = { "nvim-telescope/telescope.nvim" } },
   { "xiyaowong/telescope-emoji.nvim", dependencies = { "nvim-telescope/telescope.nvim" } },
@@ -35,7 +36,7 @@ return {
           },
         },
         file_sorter = require("telescope.sorters").get_fuzzy_file,
-        file_ignore_patterns = {},
+        file_ignore_patterns = {".class"},
         generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
         winblend = 0,
         border = {},
@@ -52,6 +53,9 @@ return {
     },
     keys = {
       { "<leader>c", "<cmd>Telescope commands<cr>" },
+      { "<leader>lg", "<cmd>LazyGit<cr>" },
+      { "<leader>ds", "<cmd>Telescope lsp_document_symbols<cr>" },
+      { "<leader>ws", "<cmd>Telescope lsp_workspace_symbols<cr>" },
       { "<leader>ff", "<cmd>lua require('telescope.builtin').find_files{ path_display = { 'shorten' } }<cr>" },
       { "<leader>bf", "<cmd>Telescope buffers path_display={'shorten'}<cr>" },
       { "<leader>ag", "<cmd>Telescope live_grep  path_display={'shorten'}<cr>" },

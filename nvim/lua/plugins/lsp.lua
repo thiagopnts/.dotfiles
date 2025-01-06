@@ -39,14 +39,14 @@ local kinds = {
   Copilot = " ",
 }
 
--- local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
--- vim.api.nvim_create_autocmd("BufWritePre", {
---   pattern = "*.go",
---   callback = function()
---     require("go.format").goimports()
---   end,
---   group = format_sync_grp,
--- })
+local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.go",
+  callback = function()
+    require("go.format").goimports()
+  end,
+  group = format_sync_grp,
+})
 
 return {
   {
@@ -134,6 +134,7 @@ return {
           end, { "i", "s" }),
         }),
         sources = cmp.config.sources({
+          { name = "lazydev" },
           { name = "luasnip" },
           { name = "nvim_lsp" },
           { name = "nvim_lua" },
@@ -159,10 +160,9 @@ return {
       require("mason").setup({})
       require("mason-lspconfig").setup({
         ensure_installed = {
-          "tsserver",
-          "eslint",
+          -- "tsserver",
+          -- "eslint",
           -- "buf",
-          "lua_ls",
           "zls",
           "terraformls",
           "pyright",
@@ -171,13 +171,14 @@ return {
         },
         handlers = {
           rust_analyzer = lsp_zero.noop,
-          gopls = lsp_zero.noop,
+          -- gopls = lsp_zero.noop,
           lsp_zero.default_setup,
           jdtls = lsp_zero.noop,
-          lua_ls = function()
-            local lua_opts = lsp_zero.nvim_lua_ls()
-            require("lspconfig").lua_ls.setup(lua_opts)
-          end,
+          tsserver = lsp_zero.noop,
+          -- lua_ls = function()
+          --   local lua_opts = lsp_zero.nvim_lua_ls()
+          --   require("lspconfig").lua_ls.setup(lua_opts)
+          -- end,
         },
       })
       lsp_zero.setup()
@@ -199,15 +200,15 @@ return {
           null_ls.builtins.formatting.xmllint,
           null_ls.builtins.formatting.black,
           null_ls.builtins.diagnostics.buf,
-          null_ls.builtins.formatting.stylua,
+          -- null_ls.builtins.formatting.stylua,
           null_ls.builtins.formatting.zigfmt,
-          null_ls.builtins.formatting.prettierd,
+          -- null_ls.builtins.formatting.prettierd,
+          -- null_ls.builtins.code_actions.eslint,
 
           null_ls.builtins.diagnostics.hadolint,
           null_ls.builtins.diagnostics.checkmake,
           null_ls.builtins.diagnostics.fish,
 
-          null_ls.builtins.code_actions.eslint,
         },
         -- you can reuse a shared lspconfig on_attach callback here
         on_attach = function(client, bufnr)
@@ -232,41 +233,44 @@ return {
       "ray-x/guihua.lua",
       "neovim/nvim-lspconfig",
       "nvim-treesitter/nvim-treesitter",
+      "hrsh7th/cmp-nvim-lsp",
     },
-    opts = {
-      -- disable_defaults = false,
-      lsp_codelens = true,
-      lsp_keymaps = false,
-      run_in_floaterm = true,
-      -- diagnostic = {
-      --     hdlr = true,
-      --     virtual_text = {},
-      -- },
-      textobjects = true,
-      lsp_inlay_hints = {
-        enable = true,
-        only_current_line = false,
-        show_variable_name = true,
-        show_parameter_hints = true,
-        parameter_hints_prefix = " ",
-        other_hints_prefix = "=> ",
-        max_len_align = false,
-        max_len_align_padding = 1,
-        right_align = false,
-        -- highlight = "Comment",
-      },
-      trouble = true, -- true: use trouble to open quickfix
-      luasnip = true,
-      lsp_cfg = {
-        flags = {
-          debounce_text_changes = 150,
+    config = function()
+      require("go").setup({
+        -- disable_defaults = true,
+        lsp_codelens = true,
+        lsp_keymaps = false,
+        run_in_floaterm = true,
+        -- diagnostic = {
+        --     hdlr = true,
+        --     virtual_text = {},
+        -- },
+        textobjects = true,
+        lsp_inlay_hints = {
+          enable = false,
+          only_current_line = true,
+          show_variable_name = true,
+          show_parameter_hints = true,
+          parameter_hints_prefix = " ",
+          other_hints_prefix = "=> ",
+          max_len_align = false,
+          max_len_align_padding = 1,
+          right_align = false,
+          -- highlight = "Comment",
         },
-        root_dir = vim.loop.cwd,
-        settings = { telemetry = false },
-        -- offset_encoding = "utf-8",
-        -- capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
-      },
-    },
+        trouble = true, -- true: use trouble to open quickfix
+        luasnip = true,
+        lsp_cfg = {
+          flags = {
+            debounce_text_changes = 150,
+          },
+          -- root_dir = vim.loop,
+          settings = { telemetry = false },
+          -- offset_encoding = "utf-8",
+          capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+        },
+      })
+    end,
     event = { "CmdlineEnter" },
     ft = { "go", "gomod" },
     build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries

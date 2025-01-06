@@ -3,7 +3,6 @@ return {
     "folke/trouble.nvim",
     opts = {
       position = "bottom",
-      icons = true,
       action_keys = {
         close = "q", -- close the list
         cancel = "<esc>", -- cancel the preview and get back to your last window / buffer / cursor
