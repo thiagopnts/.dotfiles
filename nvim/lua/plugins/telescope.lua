@@ -56,9 +56,9 @@ return {
       { "<leader>lg", "<cmd>LazyGit<cr>" },
       { "<leader>ds", "<cmd>Telescope lsp_document_symbols<cr>" },
       { "<leader>ws", "<cmd>Telescope lsp_workspace_symbols<cr>" },
-      { "<leader>ff", "<cmd>lua require('telescope.builtin').find_files{ path_display = { 'shorten' } }<cr>" },
-      { "<leader>bf", "<cmd>Telescope buffers path_display={'shorten'}<cr>" },
-      { "<leader>ag", "<cmd>Telescope live_grep  path_display={'shorten'}<cr>" },
+      { "<leader>ff", "<cmd>lua Snacks.picker.files()<cr>" },
+      { "<leader>bf", "<cmd>lua Snacks.picker.buffers()<cr>" },
+      { "<leader>ag", "<cmd>lua Snacks.picker.grep()<cr>" },
     },
     config = function()
       require("telescope").load_extension("fzy_native")

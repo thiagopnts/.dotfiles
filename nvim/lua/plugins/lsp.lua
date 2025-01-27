@@ -47,7 +47,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
   group = format_sync_grp,
 })
-
+vim.lsp.set_log_level("OFF")
 return {
   {
     "VonHeikemen/lsp-zero.nvim",
