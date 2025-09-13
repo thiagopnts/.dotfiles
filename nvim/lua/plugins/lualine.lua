@@ -1,19 +1,19 @@
 local kanagawa = require("kanagawa.colors")
 local colorscheme = kanagawa.setup({ theme = "dragon" })
 local colors = {
-  fg = colorscheme.oldWhite,
-  bg = colorscheme.sumiInk0,
-  black = colorscheme.sumiInk0,
-  white = colorscheme.oldWhite,
-  green = colorscheme.springGreen,
-  red = colorscheme.peachRed,
-  orange = colorscheme.surimiOrange,
-  blue = colorscheme.springBlue,
-  cyan = colorscheme.crystalBlue,
-  darkblue = colorscheme.waveBlue1,
-  magenta = colorscheme.oniViolet,
-  violet = colorscheme.oniViolet,
-  yellow = colorscheme.carpYellow,
+ fg = colorscheme.oldWhite,
+ bg = colorscheme.sumiInk0,
+ black = colorscheme.sumiInk0,
+ white = colorscheme.oldWhite,
+ green = colorscheme.springGreen,
+ red = colorscheme.peachRed,
+ orange = colorscheme.surimiOrange,
+ blue = colorscheme.springBlue,
+ cyan = colorscheme.crystalBlue,
+ darkblue = colorscheme.waveBlue1,
+ magenta = colorscheme.oniViolet,
+ violet = colorscheme.oniViolet,
+ yellow = colorscheme.carpYellow,
 }
 
 local conditions = {
@@ -32,7 +32,7 @@ local conditions = {
 
 local config = {
   options = {
-    disabled_filetypes = { "packer", "NvimTree", "TelescopePrompt" },
+    disabled_filetypes = { "packer", "neo-tree", "TelescopePrompt" },
     -- Disable sections and component separators
     component_separators = "",
     section_separators = "",
@@ -218,9 +218,9 @@ ins_right({
 })
 
 return {
-  -- {
-  --   "nvim-lualine/lualine.nvim",
-  --   dependencies = { "nvim-tree/nvim-web-devicons" },
-  --   opts = config,
-  -- },
+   {
+     "nvim-lualine/lualine.nvim",
+     dependencies = { "nvim-tree/nvim-web-devicons" },
+     opts = config,
+   },
 }

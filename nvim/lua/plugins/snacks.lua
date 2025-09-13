@@ -1,9 +1,9 @@
 return {
-  "folke/snacks.nvim",
-  ---@type snacks.Config
-  opts = {
-    picker = {
-
-    }
-  }
+--  "folke/snacks.nvim",
+--  ---@type snacks.Config
+--  opts = {
+--    picker = {
+--
+--    }
+--  }
 }

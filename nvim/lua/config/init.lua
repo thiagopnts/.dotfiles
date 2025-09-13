@@ -50,7 +50,7 @@ vim.opt.incsearch = true
 vim.opt.smartindent = true
 vim.opt.inccommand = "nosplit"
 vim.opt.clipboard = "unnamedplus"
-vim.opt.guifont = "CaskaydiaCove Nerd Font:h16"
+vim.opt.guifont = "Cascadia Code:h16"
 vim.opt.laststatus = 3
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.list = true
@@ -63,12 +63,11 @@ vim.opt.listchars:append("tab:  ")
 vim.g.camelcasemotion_key = ","
 
 require("lazy").setup({
-  spec = {
-    { import = "plugins" },
-  },
+   spec = {
+     { import = "plugins" },
+   },
   install = { colorscheme = { "kanagawa" } },
-  -- automatically check for plugin updates
-  checker = { enabled = true, notify = false },
+   checker = { enabled = true, notify = false },
 })
 
 -- remaps

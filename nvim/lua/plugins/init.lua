@@ -3,6 +3,7 @@ for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
+
 return {
     {
         'smoka7/hop.nvim',
@@ -36,20 +37,6 @@ return {
         end,
     },
     { "mfussenegger/nvim-dap" },
-    {
-        "OXY2DEV/markview.nvim",
-        lazy = false, -- Recommended
-        -- ft = "markdown" -- If you decide to lazy-load anyway
-
-        dependencies = {
-            -- You will not need this if you installed the
-            -- parsers manually
-            -- Or if the parsers are in your $RUNTIMEPATH
-            "nvim-treesitter/nvim-treesitter",
-
-            "nvim-tree/nvim-web-devicons",
-        },
-    },
     { "jose-elias-alvarez/null-ls.nvim" },
     {
         "ellisonleao/glow.nvim",
@@ -143,13 +130,23 @@ return {
     { "tpope/vim-repeat" },
     -- classic surround plugin
     { "hashivim/vim-terraform" },
-    { "mrcjkb/rustaceanvim",                    version = "^5",                    lazy = false },
-    { "lukas-reineke/indent-blankline.nvim",    main = "ibl",                      opts = {} },
+    { "mrcjkb/rustaceanvim",                 version = "^5",                    lazy = false },
+    { "lukas-reineke/indent-blankline.nvim", main = "ibl",                      opts = {} },
     { "akinsho/toggleterm.nvim" },
-    {"kdheepak/lazygit.nvim"},
+    { "kdheepak/lazygit.nvim" },
     { "github/copilot.vim" },
-    { "sindrets/diffview.nvim",                 requires = "nvim-lua/plenary.nvim" },
-    { "nvim-treesitter/nvim-treesitter",        run = ":TSUpdate" },
+    { "sindrets/diffview.nvim",              requires = "nvim-lua/plenary.nvim" },
+    {
+        'stevearc/conform.nvim',
+        lazy = false,
+        opts = {
+            format_on_save = {
+                timeout_ms = 500,
+                lsp_format = "fallback",
+            },
+        },
+    },
+    -- { "nvim-treesitter/nvim-treesitter",        run = ":TSUpdate" },
     -- sticks current function/method/class/etc context to top line
     { "nvim-treesitter/nvim-treesitter-context" },
     -- {

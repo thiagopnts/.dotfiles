@@ -1,6 +1,7 @@
 local wezterm = require("wezterm")
 
 return {
+    enable_wayland = false,
     keys = {
         {
             key = "L",
@@ -85,23 +86,23 @@ return {
     default_cursor_style = "SteadyBlock",
 
     -- Font settings
-    font = wezterm.font("CaskaydiaCove Nerd Font"),
-    font_size = 12.0,
+    font = wezterm.font("Cascadia Code"),
+    font_size = 14.0,
 
     -- Bold, italic, and bold-italic fonts
     font_rules = {
         {
             italic = true,
-            font = wezterm.font("CaskaydiaCove Nerd Font", { italic = true }),
+            font = wezterm.font("Cascadia Code", { italic = true }),
         },
         {
             intensity = "Bold",
-            font = wezterm.font("CaskaydiaCove Nerd Font", { bold = true }),
+            font = wezterm.font("Cascadia Code", { bold = true }),
         },
         {
             italic = true,
             intensity = "Bold",
-            font = wezterm.font("CaskaydiaCove Nerd Font", { bold = true, italic = true }),
+            font = wezterm.font("Cascadia Code", { bold = true, italic = true }),
         },
     },
 
@@ -109,14 +110,14 @@ return {
     harfbuzz_features = { "calt", "liga", "dlig", "clig" },
 
     -- Window decorations
-    window_decorations = "RESIZE",
+    --window_decorations = "RESIZE",
 
     -- Window padding
     window_padding = {
-        left = 5,
-        right = 5,
-        top = 5,
-        bottom = 5,
+        left = 0,
+        right = 0,
+        top = 0,
+        bottom = 0,
     },
 
 
@@ -128,12 +129,12 @@ return {
     -- Tab bar settings
     use_fancy_tab_bar = false,
     tab_bar_at_bottom = false,
-    tab_max_width = 25,
-    tab_bar_style = {
-        new_tab = wezterm.format({
-            { Text = " + " },
-        }),
-    },
+    --tab_max_width = 25,
+    --tab_bar_style = {
+    --    new_tab = wezterm.format({
+    --        { Text = " + " },
+    --    }),
+    --},
 
     -- MacOS specific settings
     macos_forward_to_ime_modifier_mask = "SHIFT|CTRL",
